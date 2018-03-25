@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1522008777 source:/home/samuel/Desktop/C++/Assignment 3/main.cpp
+	<iostream>
+	"Member.h"
+
+1522008956 /home/samuel/Desktop/C++/Assignment 3/include/Member.h
+	<iostream>
+	<set>
+	<iterator>
+	<string>
+
+1521997489 source:/home/samuel/Desktop/C++/Assignment 3/src/Mail.cpp
+	"Mail.h"
+
+1521997489 /home/samuel/Desktop/C++/Assignment 3/include/Mail.h
+
