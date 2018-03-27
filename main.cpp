@@ -4,7 +4,6 @@ using namespace std;
 
 #include "Member.h"
 
-
 Member avi, beni, chana;
 
 void test1() {
@@ -13,7 +12,7 @@ void test1() {
 	dana.follow(avi);
 	cout << "  " << chana.numFollowers() << " " <<  chana.numFollowing() << endl; // 0 1
 	cout << "  " << avi.numFollowers() << " " <<  avi.numFollowing() << endl; // 1 0
-//	cout << "  " << Member::count() << endl; // 4
+    cout << "  " << Member::count() << endl; // 4
 }
 
 int main() {
@@ -21,7 +20,7 @@ int main() {
 	avi.follow(beni);
 	cout << avi.numFollowers() << " " << avi.numFollowing() << endl; // 0 1
 	cout << beni.numFollowers() << " " << beni.numFollowing() << endl; // 1 0
-	//cout << Member::count() << endl; // 3
+	cout << Member::count() << endl; // 3
 	cout << endl;
 
 	avi.follow(beni); // duplicate follow has no effect
@@ -34,5 +33,5 @@ int main() {
 	test1();
 	cout << chana.numFollowers() << " " <<  chana.numFollowing() << endl; // 0 0
 	cout << avi.numFollowers() << " " <<  avi.numFollowing() << endl; // 0 0
-	//cout << Member::count() << endl; // 3
+	cout << Member::count() << endl; // 3
 }

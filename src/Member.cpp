@@ -1,27 +1,40 @@
 #include "Member.h"
 
-//add constructor and destructor.
+static int numberOfUsers = 0;
+std::vector<Member*> Member::listOfUsers;
+
+Member::Member() {
+    if(std::find(listOfUsers.begin(), listOfUsers.end(), this) == listOfUsers.end()) {
+        listOfUsers.push_back(this);
+        numberOfUsers++;
+    }
+}
+
+Member::~Member() {
+    if(std::find(listOfUsers.begin(), listOfUsers.end(), this) != listOfUsers.end())
+        numberOfUsers--;
+}
 
 void Member::follow(Member member) {
-    if(!isFollowing(member)) {
+    if(listFollowings.count(member) == 0) {
         followings++;
         listFollowings.insert(member);
-        member.increaseNumFollowers();
-        member.listFollowers.insert(*this);
+        //
+        //
     }
 }
 
 void Member::unfollow(Member member) {
-    if(isFollowing(member)) {
+    if(listFollowings.count(member) == 1) {
         followings--;
         listFollowings.erase(member);
-        member.decreaseNumFollowers();
-        member.listFollowers.erase(member);
+        //member.decreaseNumFollowers();
+        //member.listFollowers.erase(member);
     }
 }
 
-void Member::count() {
-    //Don't know what this function is doing.
+int Member::count() {
+    return numberOfUsers;
 }
 
 int Member::numFollowers() {
@@ -30,21 +43,6 @@ int Member::numFollowers() {
 
 int Member::numFollowing() {
     return followings;
-}
-
-void Member::decreaseNumFollowers() {
-    member.followers--;
-}
-
-void Member::increaseNumFollowers(){
-    member.followers++;
-}
-
-bool Member::isFollowing(Member member) {
-    if (listFollowings.count(member))
-            return true;
-    else
-        return false;
 }
 
 bool operator< (const Member &first, const Member &second) {
