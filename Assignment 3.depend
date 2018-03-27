@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1522077096 source:/home/samuel/Desktop/C++/Assignment 3/main.cpp
+1522140461 source:/home/samuel/Desktop/C++/Assignment 3/main.cpp
 	<iostream>
 	"Member.h"
 
-1522138377 /home/samuel/Desktop/C++/Assignment 3/include/Member.h
+1522143813 /home/samuel/Desktop/C++/Assignment 3/include/Member.h
 	<stdlib.h>
 	<stdio.h>
+	<stdbool.h>
 	<iostream>
-	<set>
 	<vector>
 	<algorithm>
 
@@ -16,6 +16,6 @@
 
 1521997489 /home/samuel/Desktop/C++/Assignment 3/include/Mail.h
 
-1522138338 source:/home/samuel/Desktop/C++/Assignment 3/src/Member.cpp
+1522141568 source:/home/samuel/Desktop/C++/Assignment 3/src/Member.cpp
 	"Member.h"
 
