@@ -6,6 +6,7 @@ using namespace std;
 
 Member avi, beni, chana;
 
+// test function
 void test1() {
 	Member dana;
 	chana.follow(dana);
