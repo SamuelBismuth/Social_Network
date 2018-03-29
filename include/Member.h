@@ -22,8 +22,8 @@ class Member {
     public:
         Member(); //Constructor.
         virtual ~Member(); //Destructor.
-        void follow(Member member);
-        void unfollow(Member member);
+        void follow(Member &member);
+        void unfollow(Member &member);
         int numFollowers();
         int numFollowing();
         static int count();
@@ -32,14 +32,20 @@ class Member {
 
     /** All the private prototypes. */
     private:
-        int followers  = 0, //Variable.
-            followings = 0; //Variable.
-        vector<Member> listFollowers;  //List.
-        vector<Member> listFollowings;  //List.
-        static vector<Member*> listUsers; //List.
+        //From here, the variable belongs to the object member.
+        int followers, //Variable.
+            followings, //Variable.
+            id; //Variable
+        vector<int> listFollowers;  //List.
+        vector<int> listFollowings;  //List.
+        //To here.
+
+        static vector<Member*> listUsers; //Static list.
+
+        //Help function.
         friend bool operator== (const Member &first, const Member &second);
         inline bool containsUser(Member *user);
-        inline bool containsFollowing(Member following);
+        inline bool containsFollowing(int id);
 };
 
 #endif // MEMBER_H
