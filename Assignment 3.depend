@@ -1,21 +1,26 @@
 # depslib dependency file v1.0
-1522253796 source:/home/samuel/Desktop/C++/Assignment 3/main.cpp
+1522323342 source:/home/samuel/Desktop/C++/Assignment 3/main.cpp
 	<iostream>
 	"Member.h"
 
-1522256161 /home/samuel/Desktop/C++/Assignment 3/include/Member.h
-	<stdlib.h>
-	<stdio.h>
-	<stdbool.h>
+1522363494 /home/samuel/Desktop/C++/Assignment 3/include/Member.h
 	<iostream>
-	<vector>
-	<algorithm>
+	<map>
+	<iterator>
 
 1521997489 source:/home/samuel/Desktop/C++/Assignment 3/src/Mail.cpp
 	"Mail.h"
 
 1521997489 /home/samuel/Desktop/C++/Assignment 3/include/Mail.h
 
-1522255983 source:/home/samuel/Desktop/C++/Assignment 3/src/Member.cpp
+1522363494 source:/home/samuel/Desktop/C++/Assignment 3/src/Member.cpp
 	"Member.h"
+
+1522360623 /home/samuel/Desktop/C++/Assignment 3/include/SocialNetwork.h
+	<set>
+	<stdbool.h>
+	"Member.h"
+
+1522359956 source:/home/samuel/Desktop/C++/Assignment 3/src/SocialNetwork.cpp
+	"SocialNetwork.h"
 

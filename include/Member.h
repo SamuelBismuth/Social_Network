@@ -2,12 +2,9 @@
 #define MEMBER_H
 
 /** All the includes needed. */
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <map>
+#include <iterator>
 
 using namespace std;
 
@@ -33,19 +30,15 @@ class Member {
     /** All the private prototypes. */
     private:
         //From here, the variable belongs to the object member.
-        int followers, //Variable.
-            followings, //Variable.
-            id; //Variable
-        vector<int> listFollowers;  //List.
-        vector<int> listFollowings;  //List.
+        int id; //Variable.
+        /**
+         * About the map in c++ : The second insert with the same key is a no-op. It simply returns an iterator pointing to the existing element.
+         * source : https://stackoverflow.com/questions/10732074/stl-map-allows-duplicate-pairs
+         * So a map act like a set, and then, we don't need to worried about duplicate follow.
+         */
+        map<int, Member*> mapFollowers;  //Map.
+        map<int, Member*> mapFollowings;  //Map.
         //To here.
-
-        static vector<Member*> listUsers; //Static list.
-
-        //Help function.
-        friend bool operator== (const Member &first, const Member &second);
-        inline bool containsUser(Member *user);
-        inline bool containsFollowing(int id);
 };
 
 #endif // MEMBER_H

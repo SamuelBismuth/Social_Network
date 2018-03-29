@@ -7,49 +7,33 @@
 /** Include of the file Member.h". */
 #include "Member.h"
 
-/** We use a static counter to count the number of user(s) for one reason : the complexity.
- * Another solution would be to return the size of the array but there are two problems :
- * which is more important : complexity or memory ??
- * And so, the members declared as global are not in the list ?
- */
-static int numberOfUsers = 0;
-static int id_number = 0;
-
-/** A static vector which contains all the user of the social network. */
-vector<Member*> Member::listUsers;
+/** We use a static counter to count the number of user(s) to make easier the manipulation with the members. */
+static int id_Member = 0;
+static int number_of_member = 0; //The number of user(s).
 
 /**
  * \brief Constructor to control all the new members.
- *  Since the duplicate follow has no effect, we check \if the follow is a new one or not.
+ *  As said in the Member.h file, there is no need to worried about the duplicate follow.
  */
 Member::Member() {
-    if(!containsUser(this)) {
-        this->id = id_number++;
-        this->followers = 0;
-        this->followings = 0;
-        this->listFollowers = {};
-        this->listFollowings = {};
-        listUsers.push_back(this);
-        numberOfUsers++;
-    }
+    this->id = id_Member++;
+    number_of_member++;
 }
 
 /**
  * \brief Destructor to control all the delete members.
- * One of the issues was in the use of the destructor : we saw that the destructor was called numerous times, and this without our control.
- * So we're now checking \if the user is in the list or not.
+ * One of the issues (when we still use vector) was in the use of the destructor : we saw that the destructor was called numerous times,
+ * and this without our control.
+ * since we use map, this problem have been resolve.
  * Here we need also to worried about all the data that the destructed object let, and delete it.
  */
 Member::~Member() {
-    if(containsUser(this)) {
-        listUsers.erase(remove(listUsers.begin(), listUsers.end(), this), listUsers.end());
-        numberOfUsers--;
-        //we need to check here !!!
-        for(int i = 0; numberOfUsers; ++i) {
-            printf("finitooo %d", listUsers[i]->listFollowers.erase(remove(listFollowers.begin(), listFollowers.end(), this->id), listFollowers.end()));
-            listUsers[i]->listFollowings.erase(remove(listFollowings.begin(), listFollowings.end(), this->id), listFollowings.end());
-        }
-    }
+    number_of_member--;
+    map<int, Member*>::iterator it;
+    for(it = mapFollowings.begin(); it != mapFollowings.end(); ++it)
+		it->second->mapFollowers.erase(it->second->mapFollowers.find(this->id));
+	for(it = mapFollowers.begin(); it != mapFollowers.end(); ++it)
+		it->second->mapFollowings.erase(it->second->mapFollowings.find(this->id));
 }
 
 /**
@@ -57,13 +41,9 @@ Member::~Member() {
  * \brief this method do a "follow" between from the "this" to the member.
  */
 void Member::follow(Member &member) {
-    if(!this->containsFollowing(member.id)) {
-        followings++;
-        listFollowings.push_back(member.id);
-        //We need to make test but it's possible that it's work.
-        member.followers++;
-        member.listFollowers.push_back(this->id);
-        //to here
+    if(mapFollowings.count(member.id) == 0) { //if the member is not follow.
+        mapFollowings[member.id] = &member;
+        member.mapFollowers[this->id] = this;
     }
 }
 
@@ -72,61 +52,35 @@ void Member::follow(Member &member) {
  * \brief this method do a "unfollow" between from the "this" to the member.
  */
 void Member::unfollow(Member &member) {
-    if(this->containsFollowing(member.id)) {
-        followings--;
-        listFollowings.erase(remove(listFollowings.begin(), listFollowings.end(), member.id), listFollowings.end());
-        //We need to make test but it's possible that it's work.
-        member.followers--;
-        member.listFollowers.erase(remove(listFollowings.begin(), listFollowings.end(), this->id), listFollowings.end());
-        //to here
+    if(this->mapFollowings.count(member.id) == 1) { //if the member if follow.
+        this->mapFollowings.erase(member.id);
+        member.mapFollowers.erase(this->id);
     }
 }
 
 /**
  * \return the number of user of the social network.
- * complexity : O(1) instead of O(n).
  */
 int Member::count() {
-    return numberOfUsers;
+   return number_of_member;
 }
+
+/** Something important here is the complexity of the method size().
+ * by http://www.cplusplus.com/reference/map/map/size/ the size is found in a constant time.
+ * The question is how much cost the memory of the size of the map.
+ * And this may us asking if the time complexity is more important that the size or not ?
+ */
 
 /**
  * \return the number of follower of the "this" member.
- * complexity : O(1) instead of O(n).
  */
 int Member::numFollowers() {
-    return followers;
+    return mapFollowers.size();
 }
 
 /**
  * \return the number of following of the "this" member.
- * complexity : O(1) instead of O(n).
  */
 int Member::numFollowing() {
-    return followings;
-}
-
-/**
- * \param Member *user.
- * \return true \if the parameter is one of the user of the social network else return false.
- */
-bool Member::containsUser(Member *user) {
-    return find(listUsers.begin(), listUsers.end(), user) != listUsers.end();
-}
-
-/**
- * \param Member following.
- * \return true \if the parameter is one of the following of the "this" member.
- */
-bool Member::containsFollowing(int id) {
-    return find(this->listFollowings.begin(), this->listFollowings.end(), id) != this->listFollowings.end();
-}
-
-/**
- * \param Member first and second.
- * \return true if there are equal, false if they don't.
- * \brief This method define the use of the operator "==".
- */
-bool operator== (const Member &first, const Member &second) {
-    return first.followers == second.followers;
+    return mapFollowings.size();
 }
