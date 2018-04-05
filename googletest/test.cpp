@@ -10,7 +10,7 @@
  test.cpp do Unitesting in several way on the functions of Member.h used by our social network.
  here we included the gtest/gtest.h header that allow us to execute Google Tests.
 */
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "Member.h"
 
 // TESTING THE NUM OF FOLLOWERS
