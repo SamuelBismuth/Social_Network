@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1522323342 source:/home/samuel/Desktop/C++/Assignment 3/main.cpp
+1522787231 source:/home/samuel/Desktop/C++/Assignment 3/main.cpp
 	<iostream>
 	"Member.h"
 
@@ -23,4 +23,9 @@
 
 1522359956 source:/home/samuel/Desktop/C++/Assignment 3/src/SocialNetwork.cpp
 	"SocialNetwork.h"
+
+1522363494 /home/samuel/Desktop/C++/Assignment 3/Member.h
+	<iostream>
+	<map>
+	<iterator>
 
