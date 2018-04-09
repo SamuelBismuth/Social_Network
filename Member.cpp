@@ -41,9 +41,11 @@ Member::~Member() {
  * \brief this method do a "follow" between from the "this" to the member.
  */
 void Member::follow(Member &member) {
-    if(mapFollowings.count(member.id) == 0) { //if the member is not follow.
-        mapFollowings[member.id] = &member;
-        member.mapFollowers[this->id] = this;
+    if(&member != this){
+        if(mapFollowings.count(member.id) == 0) { //if the member is not follow.
+            mapFollowings[member.id] = &member;
+            member.mapFollowers[this->id] = this;
+        }
     }
 }
 
@@ -52,9 +54,11 @@ void Member::follow(Member &member) {
  * \brief this method do a "unfollow" between from the "this" to the member.
  */
 void Member::unfollow(Member &member) {
-    if(this->mapFollowings.count(member.id) == 1) { //if the member if follow.
-        this->mapFollowings.erase(member.id);
-        member.mapFollowers.erase(this->id);
+    if(&member != this){
+        if(this->mapFollowings.count(member.id) == 1) { //if the member if follow.
+            this->mapFollowings.erase(member.id);
+            member.mapFollowers.erase(this->id);
+        }
     }
 }
 
