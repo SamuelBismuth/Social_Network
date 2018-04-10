@@ -1,8 +1,0 @@
-/home/samuel/Desktop/C++/Assignment 3/include/Member.h:12: warning: the name `Member' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/samuel/Desktop/C++/Assignment 3/src/Member.cpp:2: warning: the name `Member' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/samuel/Desktop/C++/Assignment 3/src/Member.cpp:40: warning: argument 'member.' of command @param is not found in the argument list of Member::follow(Member &member)
-/home/samuel/Desktop/C++/Assignment 3/include/Member.h:22: warning: The following parameters of Member::follow(Member &member) are not documented:
-  parameter 'member'
-/home/samuel/Desktop/C++/Assignment 3/src/Member.cpp:51: warning: argument 'member.' of command @param is not found in the argument list of Member::unfollow(Member &member)
-/home/samuel/Desktop/C++/Assignment 3/include/Member.h:23: warning: The following parameters of Member::unfollow(Member &member) are not documented:
-  parameter 'member'

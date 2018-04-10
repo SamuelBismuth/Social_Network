@@ -4,6 +4,10 @@ using namespace std;
 
 #include "Member.h"
 
+/** 
+ * This main file come from the github our teacher Erel : https://github.com/erelsgl/ariel-cpp-5778.git
+ */
+
 Member avi, beni, chana;
 
 void test1() {
