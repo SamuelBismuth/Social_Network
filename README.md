@@ -1,4 +1,4 @@
-# cpp-1
+# Social_Network_CPP
 
 A repository for the assignments of the course c++.
 
